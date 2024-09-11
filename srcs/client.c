@@ -6,7 +6,7 @@
 /*   By: girts <girts@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:49:12 by girts             #+#    #+#             */
-/*   Updated: 2024/07/29 23:09:45 by girts            ###   ########.fr       */
+/*   Updated: 2024/09/11 20:02:13 by girts            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,46 +76,6 @@ char *num_to_binary(int nbr)
 	return (result);
 }
 
-// char	*num_to_binary(int nbr)
-// {
-// 	int	size_base;
-// 	int	nbr_final[100];
-// 	int	i;
-// 	char	*result;
-// 	int len;
-// 	char *base;
-
-// 	base = "01";
-// 	i = 0;
-// 	size_base = 0;
-// 	result = (char *)malloc(sizeof(char) * 100);
-// 	if (!result)
-// 		return (NULL);
-// 	ft_bzero(result, 100);
-// 	if (check_base(base))
-// 	{
-// 		if (nbr < 0)
-// 		{
-// 			nbr = -nbr;
-// 			result[0] = '-';
-// 			i++;
-// 		}
-// 		while (base[size_base])
-// 			size_base++;
-// 		while (nbr)
-// 		{
-// 			nbr_final[i] = nbr % size_base;
-// 			nbr = nbr / size_base;
-// 			i++;
-// 		}
-// 		len = i;
-// 		while (--i >= 0)
-// 			result[i] = base[nbr_final[i]];
-// 		result[len + 1] = '\0';
-// 	}
-// 	return (result);
-// }
-
 //encrypt message into binary bitstream
 
 char  *encrypt(char *message)
@@ -159,7 +119,7 @@ char  *encrypt(char *message)
 	// add 00000000 to the end
 	ft_memcpy(result + current_len, "00000000", 9);
 	current_len += 9;
-    result[current_len] = '\0'; // Null-terminate the final result
+    result[current_len] = '\0';
     return (result);
 }
 
@@ -173,14 +133,7 @@ void send_signals(char *message, int pid)
 	while (message[i])
 	{
 		usleep(10000);
-		// if (n <= 7)
-			write(1, &message[i], 1);
-		// if (n == 8)
-		// {
-		// 	write(1, &message[i], 1);
-		// 	write(1, "\n", 1);
-		// 	n = -1;
-		// }
+		write(1, &message[i], 1);
 		if (message[i] == '0')
 		{
 			kill(pid, SIGUSR1);
