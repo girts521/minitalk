@@ -6,7 +6,7 @@
 /*   By: gikarcev <gikarcev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:49:12 by girts             #+#    #+#             */
-/*   Updated: 2024/12/09 19:08:45 by gikarcev         ###   ########.fr       */
+/*   Updated: 2024/12/09 20:11:21 by gikarcev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	send_signals(char *message, int pid)
 	i = 0;
 	while (message[i])
 	{
-		usleep(1000);
+		usleep(500);
 		if (message[i] == '0')
 			kill(pid, SIGUSR1);
 		else if (message[i] == '1')
